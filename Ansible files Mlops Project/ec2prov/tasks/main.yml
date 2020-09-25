@@ -1,0 +1,40 @@
+---
+# tasks file for ec2prov
+
+- name: sg group with port no 22,8888,1234
+  ec2_group:
+    name: "task2_sg"
+    description: sg with rule descriptions
+    vpc_id: vpc-1a544b72
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    region: ap-south-1
+    rules:
+      - proto: tcp
+        ports:
+        - 8888
+        - 1234
+        - 22
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 22,8888,1234
+
+- name: provisioning ec2
+  ec2:
+    key_name: prakash
+    instance_type: t2.micro
+    region: ap-south-1
+    image: ami-052c08d70def0ac62
+    group: "task2_sg"
+    count: 1
+    vpc_subnet_id: subnet-60afc52c
+    assign_public_ip: yes
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    id: "{{ unique_id }}"
+    instance_tags: '{"Name":"web_server"}'
+    wait: yes
+  register: x
+
+
+- debug:
+     msg: "{{ x.instances[0].public_ip }}"

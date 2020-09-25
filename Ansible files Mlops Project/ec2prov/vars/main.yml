@@ -1,0 +1,6 @@
+---
+# vars file for ec2prov
+
+access_key: "AKI2YKD42HE"
+secret_key: "MiaTfmvmRboA2V7P9SnP1L2vJ"
+unique_id: "web2"

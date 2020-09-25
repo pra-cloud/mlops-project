@@ -1,0 +1,4 @@
+- hosts: tag_Name_web_server
+  roles:
+    - config
+
