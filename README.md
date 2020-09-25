@@ -8,5 +8,6 @@ Deployed at: _http://265178048:1234_
 
 • A glimpse of the web app:
 
+![GIF](readme_resources/ipl.gif)
 
 
