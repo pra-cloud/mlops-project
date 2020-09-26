@@ -43,71 +43,6 @@ job('Job3_Setting_file'){
   
 	steps {
 shell('''
-	sudo cd /root/mlops/ipl
-	sudo python3 /root/mlops/ipl/app.py
-''')
-
-        }
-}
-
-
-
-job('Job4_Monitor'){
-	    description('This job will check the web_apps web_server is running or not, if not then it will send a email to developer')
-  triggers {
-        upstream {
-            upstreamProjects('Job3_Setting_file')
-            threshold('Success')
-        } 
-    }
-steps {
-shell('''
-if url1='job('Job1_Gitpull'){
-    description('This job pulls the GitHub repository')
-    scm {
-            github('techcrew5/mlops-project', 'master')
-        }
-    triggers {
-        scm("* * * * *")
-    }
-    steps {
-        shell(''' 
-sudo cp -rvf * /root/mlops/ipl
-''')
-    }
-}
-
-job('Job2_Create_Model'){
-	    description('This job will run Machine Learning code to create a ML Model ')
-  triggers {
-        upstream {
-            upstreamProjects('Job1_Gitpull')
-            threshold('Success')
-        } 
-    }  
-	    steps {
-shell('''
-sudo cd /root/mlops/ipl
-sudo python3 /root/mlops/ipl/main.py
-''')
-        }
-}
-
-
-
-
-job('Job3_Setting_file'){
-	    description('This job will launch web_application')
-  triggers {
-        upstream {
-            upstreamProjects('Job2_Create_Model')
-            threshold('Success')
-        } 
-    }
-  
-	steps {
-shell('''
-	sudo cd /root/mlops/ipl
 	sudo python3 /root/mlops/ipl/app.py
 ''')
 
@@ -133,23 +68,9 @@ fi
 
 if [[ $status1 == 200 ]]
 then 
-    echo  "Server-1 $url1 is ONLINE";
+    echo  "Server $url1 is ONLINE";
 else 
-    echo  "Server-1 $url1 is OFFLINE";
-    sudo python3 /root/mlops/ipl/Mail.py;
-fi
-''')
-}
-}:1234';
-	then 
-	    status1=$(curl -s $url1 -w '%{http_code}' -o /dev/null);
-fi 
-
-if [[ $status1 == 200 ]]
-then 
-    echo  "Server-1 $url1 is ONLINE";
-else 
-    echo  "Server-1 $url1 is OFFLINE";
+    echo  "Server $url1 is OFFLINE";
     sudo python3 /root/mlops/ipl/Mail.py;
 fi
 ''')
