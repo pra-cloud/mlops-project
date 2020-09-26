@@ -4,7 +4,7 @@
 • This repository consists of files required to deploy a ___Machine Learning Web App created with Flask on AWS platform using Jenkins and Ansible___.
 
 • If you want to view the deployed model, click on the following link:<br />
-Deployed at: http://50806185:1234_ <br />
+Deployed at: _http://50806185:1234_ <br />
            
 
 • A glimpse of the web app:
