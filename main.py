@@ -88,7 +88,7 @@ df['date'] = df['date'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d'))
 # In[12]:
 
 
-# --- Data Preprocessing - Feature Scaling ---
+# --- Data Preprocessing ---
 # Converting categorical features using OneHotEncoding method
 encoded_df = pd.get_dummies(data=df, columns=['bat_team', 'bowl_team'])
 
