@@ -11,4 +11,6 @@ Deployed at: _http://50806185:1234_ <br />
 
 ![GIF](readme_resources/ipl.gif)
 
+#Thanks for Reading this
+
 
